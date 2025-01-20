@@ -37,17 +37,8 @@ const chartConfig = {
 }
 
 export function SignalChart(props) {
-    console.log("123123",props);
     const {chartData}=props
-    // const chartData = [
-    //     { sec: "6s", red: 186, yellow: 80, green: 150 },
-    //     { sec: "5s", red: 305, yellow: 200, green: 280 },
-    //     { sec: "4s", red: 237, yellow: 120, green: 220 },
-    //     { sec: "3s", red: 73, yellow: 190, green: 160 },
-    //     { sec: "2s", red: 209, yellow: 130, green: 190 },
-    //     { sec: "1s", red: 214, yellow: 140, green: 400 },
-        
-    //   ]
+  
   return (
     <Card className="h-full  md:w-[50%] w-full">
       <CardHeader>

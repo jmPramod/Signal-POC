@@ -15,7 +15,7 @@ import { TableDemo } from "../Table/SignalTable";
 export function DialogDemo({ props }) {
   return (
     <>
-      <DialogContent className=" w-full">
+      <DialogContent className=" w-full mt-[40px]">
         <DialogHeader>
           <DialogTitle>Last 10 entries</DialogTitle>
           <DialogDescription>Track changes of Signal here. </DialogDescription>

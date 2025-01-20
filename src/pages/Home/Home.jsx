@@ -59,7 +59,7 @@ const Home = () => {
         disconnectSocket();
       };
     }
-  }, [isConnected]);
+  }, [isConnected,user]);
 
   const handleDisconnect = () => {
     disconnectSocket();
