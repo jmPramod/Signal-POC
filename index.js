@@ -10,7 +10,7 @@ dotenv.config();
 const port = process.env.PORT;
 
 // Middleware
-app.use(cors({ origin: ["http://localhost:5173"], credentials: true }));
+app.use(cors({ origin: ["http://localhost:5173","https://splendid-gumption-1ca67a.netlify.app/"], credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookies());
