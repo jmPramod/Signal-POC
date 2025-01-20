@@ -1,58 +1,46 @@
-import React, { useEffect, useState } from 'react';
-import io from 'socket.io-client';
+import { io } from "socket.io-client";
 
-const socket = io("http://localhost:3500/socket"); // Your backend URL
 
-const Socket1 = () => {
-  const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState([]);
+const base_url = import.meta.env.VITE_REACT_APP_DEPLOY_URL;
+// const base_url = "http://localhost:3500";
+let socket = null;
 
-  useEffect(() => {
-    // Listen for incoming messages from the server
-    socket.on("message", (data) => {
-      console.log("Message received from server:", data); // Logs the received message
+// Initialize or get the existing socket instance
+export const initializeSocket = ({userID}) => {
+  if (!socket) {
+    const user = localStorage.getItem('User');
+    if(user){
 
-      if (data === "hai") {
-        console.log("Received 'hai' from server");
-      }
-
-      // Update the state with the new message
-      setMessages((prevMessages) => [...prevMessages, data]);
-    });
-
-    // Clean up the socket connection when the component is unmounted
-    return () => {
-      socket.off("message");
-    };
-  }, []);
-
-  const sendMessage = () => {
-    // Emit a message to the server
-    socket.emit("message", message);
-    setMessage(""); // Reset the input field
-  };
-
-  return (
-    <div>
-      <h2>Socket.IO Chat</h2>
-      <input
-        type="text"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        placeholder="Type a message"
-      />
-      <button onClick={sendMessage}>Send</button>
-
-      <div>
-        <h3>Messages</h3>
-        <ul>
-          {messages.map((msg, index) => (
-            <li key={index}>{msg}</li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  );
+      socket = io(base_url, { query: { userID:user  }});
+    }
+    console.log("Socket initialized");
+  }
+  return socket;
 };
 
-export default Socket1;
+// Subscribe to a specific event
+export const subscribeToEvent = (event, callback) => {
+  if (!socket) {
+    console.error("Socket is not initialized. Call initializeSocket first.");
+    return;
+  }
+  socket.on(event, callback);
+};
+
+// Emit an event
+export const emitEvent = (event, data) => {
+  if (!socket) {
+    console.error("Socket is not initialized. Call initializeSocket first.");
+    return;
+  }
+  socket.emit(event, data);
+};
+
+// Disconnect the socket
+export const disconnectSocket = () => {
+  if (socket) {
+    socket.disconnect();
+    socket = null;
+    console.log("Socket disconnected");
+  }
+};
