@@ -3,7 +3,8 @@ import jwt from "jsonwebtoken";
 import { authModel } from "../models/authSchema.js";
 import { createError } from "../midddlewears/errorHandle.js";
 import dotenv from "dotenv";
-import { cloudinaryImage } from "../midddlewears/cloudnary.js";
+import cloudinaryImage from "../midddlewears/cloudnary.js";
+// import { cloudinaryImage } from "../midddlewears/cloudnary.js";
 
 dotenv.config();
 export const signUpController = async (req, res, next) => {
@@ -94,7 +95,11 @@ export const profileUpdateController = async (req, res, next) => {
         imageUrl: urlPath,
         imgPublicId: PublicID,
       };
+      console.log("existingImages",existingImages);
+      
       if (oldData.images.imgPublicId) {
+        console.log("oldData.images.imgPublicId",oldData.images.imgPublicId);
+        
         await cloudinaryImage.uploader.destroy(
           oldData.images.imgPublicId,
           (error, result) => {
