@@ -17,6 +17,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart"
 import { Skeleton } from '../ui/skeleton'
+import { Button } from '@mui/material'
 
 
 
@@ -39,8 +40,9 @@ const chartConfig = {
 export function SignalChart(props) {
     const {chartData}=props
   
-  return (
-    <Card className="h-full  md:w-[50%] w-full">
+  return (<>
+  
+    <Card className="h-full  md:w-[45%] w-full">
       <CardHeader>
         <CardTitle>Line Chart - Signals</CardTitle>
         <CardDescription>Time (X-axis) - Singal Occurance (Y-axis)</CardDescription>
@@ -103,6 +105,8 @@ export function SignalChart(props) {
         </div>
       </CardFooter>
     </Card>
+
+  </>
   )
 }
 

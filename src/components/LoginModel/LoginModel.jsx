@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "@/context/GlobalContext";
+import { login } from "@/utils/API.services";
 
 export function LoginModel({ setIsOpen }) {
   
@@ -21,29 +22,29 @@ export function LoginModel({ setIsOpen }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const payload = {
+      email: name,
+      password: password,
+    };
 
-    // try {
-    //   const response = await fetch("https://api.example.com/login", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({ name, password }),
-    //   });
+    let res = await login(payload);
+    if (res.statusCode==200) {
+      localStorage.setItem("User", JSON.stringify(res?.data));
+      setUser(res?.data);
+      setIsOpen(false)
+      navigate("/home");
 
-    //   if (response.ok) {
-    //     const data = await response.json();
-    //     console.log("Login successful", data);
-    //     // Perform post-login actions, e.g., storing tokens and redirecting
-    //     setIsOpen(false);
-    //     navigate("/dashboard");
-    //   } else {
-    //     console.error("Login failed", await response.json());
-    //     // Handle login errors here
-    //   }
-    // } catch (error) {
-    //   console.error("An error occurred:", error);
-    // }
+    }
+    else{
+      console.log("res.errorMessage",res.errorMessage);
+      
+      toast(res.errorMessage||"Something went wrong. please try later.", {
+        style: {
+          backgroundColor: "white",
+          color: "red",
+        },
+      });
+    }
   };
 
   return (

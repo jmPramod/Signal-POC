@@ -194,33 +194,34 @@ const Home = () => {
           </styles.leftbottom>
         </styles.leftContainer>
         <styles.rightContainer>
-          <Typography typography="h4" className="p-2 text-center font-bold">
-            <u>Current Signal Status</u>
-          </Typography>
+          <Typography typography="h4" className="p-2 text-center font-bold flex  items-center justify-between w-full">
+            <u className="bg-white  rounded-lg p-[10px] block  ">Current Signal Status</u>
+            <div>
+                  {isConnected ? (
+                    <>
+                      <Button onClick={handleDisconnect}>
+                        Stop Connection
+                      </Button>
+                    </>
+                  ) : (
+                    <>
+                      <Button onClick={handleConnect}>Start Connection</Button>
+                    </>
+                  )}
+                </div>
+                      </Typography>
           <styles.rightTop>
             <SignalChart chartData={randomObject && randomObject.chartData} />
 
             {randomObject ? (
-              <div className="flex flex-col justify-between gap-1">
+              <div className="flex flex-col justify-between gap-1 w-full md:w-[45%]">
                 <Card1 props={randomObject && randomObject} />
-                <div>
-                  {isConnected ? (
-                    <>
-                      <Button onClick={handleDisconnect}>
-                        Stop Connection
-                      </Button>
-                    </>
-                  ) : (
-                    <>
-                      <Button onClick={handleConnect}>Start Connection</Button>
-                    </>
-                  )}
-                </div>
+                
               </div>
             ) : (
               <>
                 <SkeletonCard />
-                <div>
+                {/* <div>
                   {isConnected ? (
                     <>
                       <Button onClick={handleDisconnect}>
@@ -232,7 +233,7 @@ const Home = () => {
                       <Button onClick={handleConnect}>Start Connection</Button>
                     </>
                   )}
-                </div>
+                </div> */}
               </>
             )}
           </styles.rightTop>

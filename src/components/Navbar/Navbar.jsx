@@ -84,7 +84,7 @@ function NavBar() {
                   >
                     <DropdownMenuTrigger asChild>
 
-                  <img src={user.images.imageUrl} className="w-[70px] cursor-pointer"/>
+                  <img src={user.images.imageUrl} className="w-[60px] h-[60px] cursor-pointer  rounded-full"/>
                     </DropdownMenuTrigger>
                     {/* <styles.menuButton
                       variant="contained"

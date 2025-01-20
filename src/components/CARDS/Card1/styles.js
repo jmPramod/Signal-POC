@@ -9,7 +9,7 @@ export const styles = {
 
     `,
 image:styled("img")`
-width:90%;
+width:75%;
 
 `
     

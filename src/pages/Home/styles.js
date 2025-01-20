@@ -59,7 +59,7 @@ export const styles = {
   `,
 
   rightTop: styled("div")`
-    height: 70%;
+    /* height: 70%; */
     width: 100%;
     /* border: 1px solid green; */
     display: flex;
