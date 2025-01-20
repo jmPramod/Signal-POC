@@ -18,6 +18,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookies());
 // Routes
+app.get("/",(req,res)=>{
+  res.send("API working")
+})
 app.use("/", signalRoute);
 app.use("/", authRoute);
  //! Error handing  middleware
