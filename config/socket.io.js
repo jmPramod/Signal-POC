@@ -30,18 +30,16 @@ io.on("connection", (socket) => {
       (user) => user.email === userObj.email
     );
 
-    // Store only the name and imageUrl in the socketMap
     if (!isEmailExists) {
-      // Store only the name and imageUrl in the socketMap if email is unique
-      onlineuser.push({
+        onlineuser.push({
         name: userObj.name,
         email: userObj.email,
-        image: userObj.images?.imageUrl || null, // Default to null if no imageUrl
+        image: userObj.images?.imageUrl || null, 
       });
       socketMap[socket.id] = {
         name: userObj.name,
         email: userObj.email,
-        image: userObj.images?.imageUrl || null, // Default to null if no imageUrl
+        image: userObj.images?.imageUrl || null, 
       };
     }
   }
@@ -118,16 +116,11 @@ io.on("connection", (socket) => {
         };
         let dataDb = await signalHistoryDoc.save();
         io.emit("message", {
-          ...dataDb._doc, // Spread saved data from MongoDB
-          chartData, // Include the chartData array
+          ...dataDb._doc, 
+          chartData,
         });
         console.log("socketMap", socketMap);
 
-        // io.emit("getonlineuser", socketMap);
-        // clearInterval(intervalId);
-        // console.log("Sent random object:", newObj);
-
-        // console.log("dataDb",dataDb);
       }
     } catch (error) {
       console.error("Error fetching or saving random signal:", error);
@@ -140,12 +133,11 @@ io.on("connection", (socket) => {
       const disconnectedUser = socketMap[socket.id];
       console.log("Disconnected user:", disconnectedUser);
 
-      // Remove the user from onlineuser array
       onlineuser = onlineuser.filter(
         (user) => user.email !== disconnectedUser.email
       );
 
-      // Remove the user from the socketMap
+      // Remove the user
       delete socketMap[socket.id];
 
       // Emit the updated online users list
