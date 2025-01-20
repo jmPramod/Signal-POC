@@ -25,8 +25,7 @@ export const addSignal = async (req, res, next) => {
 export const sendSignal = async (req, res, next) => {
   try {
     const data = new signalHistoryModel(req.body);
- 
-  
+
     const signalData = await data.save();
     res.status(200).json({
       data: signalData,
@@ -41,10 +40,10 @@ export const sendSignal = async (req, res, next) => {
 export const fetchSignal = async (req, res, next) => {
   try {
     const userSignalExist = await signalHistoryModel
-      .find()           
-      .sort({ _id: -1 }) 
-      .limit(10);       
-    
+      .find()
+      .sort({ _id: -1 })
+      .limit(10);
+
     res.status(200).json({
       data: userSignalExist,
       statusCode: 200,

@@ -1,12 +1,15 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-const SignalSchema = new mongoose.Schema({
+const SignalSchema = new mongoose.Schema(
+  {
     signalId: { type: Number },
-    signalColor: { type: String},
-    description:{type: String},
-    img_url:{type: String},
-    danger:{type:Boolean,default:false},
+    signalColor: { type: String },
+    description: { type: String },
+    img_url: { type: String },
+    danger: { type: Boolean, default: false },
     timestamp: { type: Date, default: Date.now },
-},{timestamps:true});
+  },
+  { timestamps: true }
+);
 
-export const signalModel = mongoose.model('SignalData', SignalSchema);
+export const signalModel = mongoose.model("SignalData", SignalSchema);
