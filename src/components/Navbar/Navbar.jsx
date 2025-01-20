@@ -33,45 +33,39 @@ function NavBar() {
     setAnchorEl(null);
   };
   
-  React.useEffect(() => {
-    // localStorage.setItem("User", JSON.stringify(user?.data));
-    let res = localStorage.getItem("User");
-    if (res) {
-      setUser(JSON.parse(res));
-      console.log("user1", res);
-    } 
-    else if(location.pathname=="/sign-up"){
+  // React.useEffect(() => {
+  //   // localStorage.setItem("User", JSON.stringify(user?.data));
+  //   let res = localStorage.getItem("User");
+  //   console.log("res",res);
+    
+  //   if (!res) {
+        
+  //     navigate("/login");
+  //    } 
+  //   else if(res){
+  //     // setUser(res&&JSON.parse(res));
+  //     console.log("user1", res);
+  
+  //   }
+  //   else {
+  //     console.log("login redir");
       
-    }
-    else {
-      console.log("login redir");
-      
-      navigate("/login");
-    }
-  }, []);
+  //     navigate("/login");
+  //   }
+  // }, []); 
   React.useEffect(() => {
     let res = localStorage.getItem("User");
     console.log(location);
-    if(location.pathname=="/login"||location.pathname=="/sign-up"){
-      console.log("login");
-      
-      setTheam(true)
-    }
-    else{
-      // setTheam(false)
-    }
-    if (!res&&location.pathname!="/sign-up") {
+  
+  
+    if (!user||!res) {
+     console.log("redirect login ");
+     
       navigate("/login");
-      
-      console.log("login redir");
-      return
-    }
-    if (res && location.pathname === "/login") {
-      navigate("/home");
       return
     }
   
-  }, []);
+  }, [user]);
 
   const handleLogin = async () => {
     if (user) {

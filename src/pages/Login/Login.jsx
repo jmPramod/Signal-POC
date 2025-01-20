@@ -45,9 +45,9 @@ const Login = () => {
     };
 
     let res = await login(payload);
-    if (res.statusCode==200 && Object.keys(res?.data).length !== 0) {
-      localStorage.setItem("User", JSON.stringify(user?.data));
-      setUser(user?.data);
+    if (res.statusCode==200) {
+      localStorage.setItem("User", JSON.stringify(res?.data));
+      setUser(res?.data);
       navigate("/home");
     }
     else{
