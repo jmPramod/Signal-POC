@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/alert"
 
 export function AlertDestructive({invoice}) {
-    console.log("qqqq",invoice);
+  
     
   return (
     <Alert variant="destructive" className="flex items-center  w-full  px-0 gap-3">

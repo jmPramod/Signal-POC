@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { login } from "@/utils/API.services";
 import { GlobalContext } from "@/context/GlobalContext";
+import { toast, Toaster } from "sonner";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -44,25 +45,30 @@ const Login = () => {
     };
 
     let user = await login(payload);
-    if (user && Object.keys(user?.data).length !== 0) {
+    if (user.statusCode==200 && Object.keys(user?.data).length !== 0) {
       localStorage.setItem("User", JSON.stringify(user?.data));
       setUser(user?.data);
       navigate("/home");
     }
+    else{
+      toast("Something went wrong. please try later.", {
+        style: {
+          backgroundColor: "white",
+          color: "red",
+        },
+      });
+    }
     setLoading(false);
   };
-  // Animation for Login text (top to bottom)
-// Animation for Login text (top to bottom)
-const textVariants = {
-  hidden: { opacity: 0, y: -20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 1, delay: 1 }, // Adding delay of 1 second
-  },
-};
+  const textVariants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 1, delay: 1 }, 
+    },
+  };
 
-  // Framer Motion animation variants
   const inputVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
@@ -70,9 +76,9 @@ const textVariants = {
   const containerVariants = {
     hidden: { width: 0 },
     visible: {
-      width: "100%", // Original width
+      width: "100%",
       transition: {
-        duration: 1, // Time for animation
+        duration: 1, 
         ease: "easeInOut",
       },
     },
@@ -84,111 +90,120 @@ const textVariants = {
 
   return (
     <styles.outerContainer>
-           <motion.div
-       variants={containerVariants}
-       initial="hidden"
-       animate="visible"
-       style={{
-         display: "flex",
-         background:"white",
-         height:"100%",
-        //  flexDirection: "column",
-         alignItems: "center",
-         justifyContent: "center",
-         overflow: "hidden",
-       }}
-     >
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        style={{
+          display: "flex",
+          background: "white",
+          height: "100%",
+        
+          alignItems: "center",
+          justifyContent: "center",
+          overflow: "hidden",
+        }}
+      >
+        <styles.leftContainer>
+          <styles.image src="carRoad.png" alt="img" />
+        </styles.leftContainer>
 
-      <styles.leftContainer>
-        <styles.image src="carRoad.png" alt="img" />
-      </styles.leftContainer>
-
-      <styles.rightContainer>
-        {/* Login Text Animation */}
-        <motion.div
+        <styles.rightContainer>
+          {/* Login Text Animation */}
+          <motion.div
             variants={textVariants}
             initial="hidden"
             animate="visible"
           >
             <Typography variant="h4">Login</Typography>
-          </motion.div>      
-          
-           <styles.formEle action="" onSubmit={handleSubmit}>
-          {/* Email Input with Animation */}
-          <styles.emailAnimation
-            variants={inputVariants}
-            initial="hidden"
-            animate="visible"
-            transition={{ duration: 0.7, delay: 1 }}
-          >
-            <styles.inputField
-              id="outlined-basic"
-              variant="outlined"
-              label="Email"
-              name="email"
-              value={formValues.email}
-              onChange={handleChange}
-              fullWidth
-              margin="normal"
-            />
-          </styles.emailAnimation>
+          </motion.div>
 
-          {/* Password Input with Animation */}
-          <styles.passwordAnimation
-            variants={inputVariants}
-            initial="hidden"
-            animate="visible"
-            transition={{ duration: 0.7, delay:1 }}
-          >
-            <FormControl
-              sx={{ background: "white", width: "100%" }}
-              variant="outlined"
+          <styles.formEle action="" onSubmit={handleSubmit}>
+            {/* Email Input with Animation */}
+            <styles.emailAnimation
+              variants={inputVariants}
+              initial="hidden"
+              animate="visible"
+              transition={{ duration: 0.7, delay: 1 }}
             >
-              <InputLabel htmlFor="outlined-adornment-password">
-                Password
-              </InputLabel>
-              <OutlinedInput
-                id="outlined-adornment-password"
-                type={showPassword ? "text" : "password"}
-                name="password"
-                value={formValues.password}
+              <styles.inputField
+                id="outlined-basic"
+                variant="outlined"
+                label="Email"
+                name="email"
+                value={formValues.email}
                 onChange={handleChange}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label={
-                        showPassword
-                          ? "hide the password"
-                          : "display the password"
-                      }
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                      onMouseUp={handleMouseUpPassword}
-                      edge="end"
-                    >
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-                label="Password"
+                fullWidth
+                margin="normal"
               />
-            </FormControl>
-          </styles.passwordAnimation>
+            </styles.emailAnimation>
 
-          {/* Button with Delayed Animation */}
-          <styles.buttonAnimation
-            variants={buttonVariants}
-            initial="hidden"
-            animate="visible"
-            transition={{ duration: 1.5, delay: 1.5 }} // Appears after 1 second
-          >
-            <Button type="submit">{!loading ? "Login" : "Logging..."}</Button>
-       <Typography>Don't have an account yet? <u onClick={()=>{navigate("/sign-up")}} className="cursor-pointer">Sign up</u></Typography>
-          </styles.buttonAnimation>
-        </styles.formEle>
-      </styles.rightContainer>
+            {/* Password Input with Animation */}
+            <styles.passwordAnimation
+              variants={inputVariants}
+              initial="hidden"
+              animate="visible"
+              transition={{ duration: 0.7, delay: 1 }}
+            >
+              <FormControl
+                sx={{ background: "white", width: "100%" }}
+                variant="outlined"
+              >
+                <InputLabel htmlFor="outlined-adornment-password">
+                  Password
+                </InputLabel>
+                <OutlinedInput
+                  id="outlined-adornment-password"
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  value={formValues.password}
+                  onChange={handleChange}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label={
+                          showPassword
+                            ? "hide the password"
+                            : "display the password"
+                        }
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        onMouseUp={handleMouseUpPassword}
+                        edge="end"
+                      >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                  label="Password"
+                />
+              </FormControl>
+            </styles.passwordAnimation>
 
-     </motion.div>
+            {/* Button with Delayed Animation */}
+            <styles.buttonAnimation
+              variants={buttonVariants}
+              initial="hidden"
+              animate="visible"
+              transition={{ duration: 1.5, delay: 1.5 }}  
+            >
+              <Button type="submit">{!loading ? "Login" : "Logging..."}</Button>
+              <Typography>
+                Don't have an account yet?{" "}
+                <u
+                  onClick={() => {
+                    navigate("/sign-up");
+                  }}
+                  className="cursor-pointer"
+                >
+                  Sign up
+                </u>
+              </Typography>
+            </styles.buttonAnimation>
+          </styles.formEle>
+        </styles.rightContainer>
+      </motion.div>
+      <Toaster />
     </styles.outerContainer>
   );
 };

@@ -12,9 +12,11 @@ import { useTheme } from "@emotion/react";
 import MobileNav from "./MobileNav";
 import { GlobalContext } from "@/context/GlobalContext";
 import { FaTrafficLight } from "react-icons/fa";
+import { DropdownMenuCheckboxes } from "./DropDownMenu";
+import { DropdownMenu, DropdownMenuTrigger } from "../ui/dropdown-menu";
 function NavBar() {
   const { user, setUser } = React.useContext(GlobalContext);
-  
+  const [closeDrop,setcloseDrop]=React.useState(false)
   const [theam,setTheam]=React.useState(true)
   const theme = useTheme();
   const location = useLocation();
@@ -24,8 +26,10 @@ function NavBar() {
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+    setcloseDrop(true)
   };
   const handleClose = () => {
+    setcloseDrop(false)
     setAnchorEl(null);
   };
   
@@ -86,6 +90,8 @@ function NavBar() {
   };
   return (
     <>
+        <DropdownMenu>
+
       <styles.outerContainer position="fixed" className="z-100">
         <Container maxWidth="xl"  className="z-0"
         // style={{background:theam?"white":""}}
@@ -116,14 +122,17 @@ function NavBar() {
                 {user && (
                   <li    onClick={handleClick}
                   >
+                    <DropdownMenuTrigger asChild>
+
                   <img src={user.images.imageUrl} className="w-[70px] cursor-pointer"/>
+                    </DropdownMenuTrigger>
                     {/* <styles.menuButton
                       variant="contained"
                       onClick={() => navigate("/home")}
                     >
                       Signal
                     </styles.menuButton> */}
-                    <Menu
+      {/* {closeDrop&&              <Menu
         id="basic-menu"
         anchorEl={anchorEl}
         open={open}
@@ -133,22 +142,27 @@ function NavBar() {
         }}
       >
         <MenuItem onClick={()=>{
-          
+
+          setcloseDrop(false)
+          handleClose();  
           navigate("/profile")
-          handleClose();}}>Profile</MenuItem>
+       }}>Profile</MenuItem>
         <MenuItem onClick={()=>{
           handleLogin()
-          handleClose();}}>Logout</MenuItem>
-      </Menu>
-    
+            handleClose()}}>Logout</MenuItem>
+      </Menu>} */}
+    <DropdownMenuCheckboxes/>
                   </li>
                 )}
+
               </styles.menuWrapper>
             )}
+        
             {mobile && <MobileNav />}
           </styles.toolBar>
         </Container>
       </styles.outerContainer>
+        </DropdownMenu>
       <Outlet />
     </>
   );
