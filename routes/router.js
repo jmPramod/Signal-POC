@@ -1,8 +1,10 @@
 import express from "express"
+import { addSignal, fetchSignal, sendSignal } from "../controller/signal.controller.js"
+import { verifyToken } from "../midddlewears/verify.toke.js"
 
 export const signalRoute= express.Router()
 
-signalRoute.get("/",(req,res,next)=>{
+signalRoute.post("/add-signal",addSignal)
 
-    res.send("API working")
-})
+signalRoute.post("/send-signal",verifyToken,sendSignal)
+signalRoute.get("/fetch-signal",verifyToken,fetchSignal)
