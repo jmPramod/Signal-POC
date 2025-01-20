@@ -44,14 +44,16 @@ const Login = () => {
       password: formValues.password,
     };
 
-    let user = await login(payload);
-    if (user.statusCode==200 && Object.keys(user?.data).length !== 0) {
+    let res = await login(payload);
+    if (res.statusCode==200 && Object.keys(res?.data).length !== 0) {
       localStorage.setItem("User", JSON.stringify(user?.data));
       setUser(user?.data);
       navigate("/home");
     }
     else{
-      toast("Something went wrong. please try later.", {
+      console.log("res.errorMessage",res.errorMessage);
+      
+      toast(res.errorMessage||"Something went wrong. please try later.", {
         style: {
           backgroundColor: "white",
           color: "red",
@@ -131,6 +133,7 @@ const Login = () => {
                 variant="outlined"
                 label="Email"
                 name="email"
+                required
                 value={formValues.email}
                 onChange={handleChange}
                 fullWidth
@@ -157,6 +160,7 @@ const Login = () => {
                   type={showPassword ? "text" : "password"}
                   name="password"
                   value={formValues.password}
+                  required
                   onChange={handleChange}
                   endAdornment={
                     <InputAdornment position="end">

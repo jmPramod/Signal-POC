@@ -22,15 +22,16 @@ export const login = async (payload) => {
         
       };
     } catch (error) {
-      console.log("error",error);
-      
+      console.log("error",error.response.data);
         if (error) {
 
-        return {
-          statusCode:500,
-          message: error,
-          data: {},
-        };
+          return {
+            message: error.response.data.message||"",
+            data: error.response.data.data||null,
+            statusCode: error.response.data.statusCode||500,
+            errorMessage:error.response.data.errorMessage||null
+            
+          };
       }
     }
   };
@@ -53,7 +54,7 @@ export const login = async (payload) => {
         
       };
     } catch (error) {
-      console.log("error",error);
+      console.log("error",error.response.data);
       
         if (error) {
 
