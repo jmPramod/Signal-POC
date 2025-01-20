@@ -145,14 +145,8 @@ if(res.statusCode===200){
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        style={{
-          display: "flex",
-          background: "white",
-          height: "100%",
-          alignItems: "center",
-          justifyContent: "center",
-          overflow: "hidden",
-        }}
+        className="flex items-center  flex-col md:flex-row  justify-center bg-white h-full overflow-y-auto"
+   
       >
         <styles.leftContainer>
           <styles.image src="road.png" alt="img" />

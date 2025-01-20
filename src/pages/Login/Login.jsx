@@ -96,15 +96,7 @@ const Login = () => {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        style={{
-          display: "flex",
-          background: "white",
-          height: "100%",
-        
-          alignItems: "center",
-          justifyContent: "center",
-          overflow: "hidden",
-        }}
+     className="flex items-center  flex-col md:flex-row  justify-center bg-white h-full overflow-y-auto"
       >
         <styles.leftContainer>
           <styles.image src="carRoad.png" alt="img" />
@@ -139,7 +131,7 @@ const Login = () => {
                 fullWidth
                 margin="normal"
               />
-            </styles.emailAnimation>
+                    </styles.emailAnimation>
 
             {/* Password Input with Animation */}
             <styles.passwordAnimation
@@ -202,7 +194,12 @@ const Login = () => {
                 >
                   Sign up
                 </u>
+  
               </Typography>
+                <br />
+                <Typography  variant="body1 ">Demo Email: pramod@gmail.com</Typography> <br />
+                <Typography  variant="body1 ">Demo password: pramod@gmail.com</Typography>
+   
             </styles.buttonAnimation>
           </styles.formEle>
         </styles.rightContainer>

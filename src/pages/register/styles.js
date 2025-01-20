@@ -30,7 +30,9 @@ export const styles = {
     justify-content: center;
     gap: 20px;
     flex-direction: column;
-    
+    @media(0px<width<780px){
+      width: 100%;
+    }
   
     `
     ,
@@ -41,11 +43,17 @@ export const styles = {
     flex-direction: column;
     width: 50%;
     /* gap: 20px; */
+    @media(0px<width<780px){
+      width: 95%;
+    }
   `,
     leftContainer:styled("div")`
     width:50%;
     /* border:1px solid blue; */
     height: 100%;
+    @media(0px<width<780px){
+      width: 100%;
+    }
     `,
     image:styled('img')`
     width: 100%;

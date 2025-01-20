@@ -12,6 +12,10 @@ export const styles = {
     padding: 30px;
     height: 90.8vh;
     background-color: #dddddd;
+    @media(0px<width<780px){
+      width: 100%;
+      overflow-y: auto;
+    }
   `,
   rightContainer: styled("div")`
     width: 50%;
@@ -22,6 +26,9 @@ export const styles = {
     justify-content: center;
     gap: 20px;
     flex-direction: column;
+    @media(0px<width<780px){
+      width: 100%;
+    }
   `,
   formEle: styled("form")`
     display: flex;
@@ -30,10 +37,17 @@ export const styles = {
     flex-direction: column;
     width: 50%;
     gap: 20px;
+    @media(0px<width<780px){
+      width: 95%;
+      gap:4px;
+    }
   `,
   leftContainer: styled("div")`
     width: 50%;
     height: 100%;
+    @media(0px<width<780px){
+      width: 100%;
+    }
   `,
   image: styled("img")`
     width: 100%;
