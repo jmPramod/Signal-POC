@@ -19,7 +19,7 @@ const Login = lazy(() => import('./pages/Login/Login'));
 
 const Register = lazy(() => import('./pages/register/Register'));
 function App() {
-
+useEffect(()=>{},[])
   return (
 <>
 <GlobalContextProvider>
