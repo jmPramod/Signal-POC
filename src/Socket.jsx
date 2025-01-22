@@ -1,8 +1,8 @@
 import { io } from "socket.io-client";
 
 
-// const base_url = import.meta.env.VITE_REACT_APP_DEPLOY_URL;
-const base_url = "http://localhost:3500";
+const base_url = import.meta.env.VITE_REACT_APP_DEPLOY_URL;
+// const base_url = "http://localhost:3500";
 let socket = null;
 
 // Initialize or get the existing socket instance
