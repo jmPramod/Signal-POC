@@ -55,8 +55,8 @@ export function LoginModel({ setIsOpen }) {
           <DialogDescription>
             Create a new Account?{" "}
             <u
-              className="cursor-pointer"
-              onClick={() => navigate("/login")}
+              className="cursor-pointer border border-black p-1 bg-white text-black rounded-sm my-2 hover:bg-black hover:text-white"
+              onClick={() => navigate("/sign-up")}
             >
               Sign Up
             </u>

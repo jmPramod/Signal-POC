@@ -44,7 +44,7 @@ export function DropdownMenuCheckboxes() {
         <DropdownMenuSeparator />
         <DropdownMenuCheckboxItem
        onClick={() => navigate("/profile")}
-       className="w-full text-2xl text-center flex items-center justify-center"
+       className="w-full text-1xl border hover:bg-black cursor-pointer hover:text-white p-2 m-1 text-center flex items-center justify-center"
         //   checked={showStatusBar}
         //   onCheckedChange={setShowStatusBar}
         >
@@ -53,8 +53,8 @@ export function DropdownMenuCheckboxes() {
                   <DropdownMenuCheckboxItem
           checked={showPanel}
           onClick={() => handleLogin()}
-             className=" text-2xl"
-        //   onCheckedChange={setShowPanel}
+          className="w-full text-1xl border hover:bg-black cursor-pointer hover:text-white p-2 m-1 text-center flex items-center justify-center"
+          //   onCheckedChange={setShowPanel}
         >
 Logout
         </DropdownMenuCheckboxItem>

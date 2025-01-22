@@ -48,6 +48,16 @@ function NavBar() {
       console.log("login redir");
     }
   };
+
+    React.useEffect(()=>{
+      let res = localStorage.getItem("User");
+      if(!user&&!res){
+        navigate("/login");
+      }else{
+        navigate("/home");
+        
+      }
+    },[user])
   return (
     <>
         <DropdownMenu>
@@ -71,14 +81,14 @@ function NavBar() {
                     </styles.menuButton>
                   </li>
                 )}
-                {/* <li>
+             {!user&&   <li>
                   <styles.menuButton
                     variant="contained"
-                    onClick={() => handleLogin()}
-                  >
+                    onClick={() => navigate("/login")}
+                    >
                     {!user ? "Login" : "Logout"}
                   </styles.menuButton>
-                </li> */}
+                </li>}
                 {user && (
                   <li    onClick={handleClick}
                   >
