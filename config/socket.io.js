@@ -21,7 +21,7 @@ let socketMap = {};
 const serverStartTime = moment();
 const chartData = [];
 const chartData2 = [];
-
+let elapsedSeconds=0
 let onlineuser = [];
 io.on("connection", (socket) => {
   console.log("A user connected", socket.id);
@@ -97,15 +97,18 @@ io.on("connection", (socket) => {
         ]);
 
 
-        const elapsedSeconds = momentTZ
-        .tz(TIMEZONE)
-        .diff(serverStartTime, "seconds");
+        // const elapsedSeconds = momentTZ
+        // .tz(TIMEZONE)
+        // .diff(serverStartTime, "seconds");
+    
+        elapsedSeconds++
         const newChartEntry = {
-          sec: `${elapsedSeconds}s`,
+          sec: `${elapsedSeconds++}s`,
           red: randomObject.signalColor=="red"?1:0,
           yellow:  randomObject.signalColor=="yellow"?1:0,
           green:  randomObject.signalColor=="green"?1:0,
         };
+      
         const newChartEntry2 = {
           date: moment().format("YYYY-MM-DD"),
           red: randomObject.signalColor=="red"?1:0,
@@ -114,7 +117,7 @@ io.on("connection", (socket) => {
         };
         chartData2.push(newChartEntry2);
         chartData.push(newChartEntry);
-        if (chartData.length > 6) {
+        if (chartData.length > 20) {
           chartData.shift();
         }
 
