@@ -17,6 +17,8 @@ const io = new Server(server, {
 let socketMap = {};
 const serverStartTime = moment();
 const chartData = [];
+const chartData2 = [];
+
 let onlineuser = [];
 io.on("connection", (socket) => {
   console.log("A user connected", socket.id);
@@ -98,28 +100,25 @@ io.on("connection", (socket) => {
           yellow: data2[0]?.yellow || 0,
           green: data2[0]?.green || 0,
         };
-        console.log("newChartEntry", newChartEntry);
-
+        const newChartEntry2 = {
+          date: moment().format("YYYY-MM-DD"),
+          red: data2[0]?.red || 0,
+          yellow: data2[0]?.yellow || 0,
+          green: data2[0]?.green || 0,
+        };
+        chartData2.push(newChartEntry2);
         chartData.push(newChartEntry);
         if (chartData.length > 6) {
           chartData.shift();
         }
 
-        const newObj = {
-          signalId: randomObject.signalId,
-          signalColor: randomObject.signalColor,
-          description: randomObject.description,
-          img_url: randomObject.img_url,
-          danger: randomObject.danger,
-          chartData: chartData,
-          timestamp: new Date(timestamp).toLocaleString(),
-        };
+ 
         let dataDb = await signalHistoryDoc.save();
         io.emit("message", {
           ...dataDb._doc, 
           chartData,
+          chartData2:chartData2,
         });
-        console.log("socketMap", socketMap);
 
       }
     } catch (error) {
@@ -137,10 +136,8 @@ io.on("connection", (socket) => {
         (user) => user.email !== disconnectedUser.email
       );
 
-      // Remove the user
       delete socketMap[socket.id];
 
-      // Emit the updated online users list
       io.emit("getonlineuser", onlineuser);
     }
     clearInterval(intervalId);
