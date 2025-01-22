@@ -93,6 +93,9 @@ io.on("connection", (socket) => {
           chartData.shift();
         }
 
+        if (chartData2.length > 25) {
+          chartData2.shift();
+        }
  
         let dataDb = await signalHistoryDoc.save();
         io.emit("message", {
