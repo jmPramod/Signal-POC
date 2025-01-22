@@ -70,37 +70,9 @@ io.on("connection", (socket) => {
           danger: randomObject.danger,
           timestamp: moment(timestamp).format("YYYY-MM-DD HH:mm:ss [UTC]"),
         });
-        const data2 = await signalHistoryModel.aggregate([
-          {
-            $group: {
-              _id: "$signalColor",
-              count: { $sum: 1 },
-            },
-          },
-          {
-            $project: {
-              _id: 0,
-              keyValue: { k: "$_id", v: "$count" },
-            },
-          },
-          {
-            $group: {
-              _id: null,
-              keyValues: { $push: "$keyValue" },
-            },
-          },
-          {
-            $replaceRoot: {
-              newRoot: { $arrayToObject: "$keyValues" },
-            },
-          },
-        ]);
-
-
-        // const elapsedSeconds = momentTZ
-        // .tz(TIMEZONE)
-        // .diff(serverStartTime, "seconds");
     
+
+
         elapsedSeconds++
         const newChartEntry = {
           sec: `${elapsedSeconds++}s`,
