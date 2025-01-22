@@ -102,15 +102,15 @@ io.on("connection", (socket) => {
         .diff(serverStartTime, "seconds");
         const newChartEntry = {
           sec: `${elapsedSeconds}s`,
-          red: data2[0]?.red || 0,
-          yellow: data2[0]?.yellow || 0,
-          green: data2[0]?.green || 0,
+          red: randomObject.signalColor=="red"?1:0,
+          yellow:  randomObject.signalColor=="yellow"?1:0,
+          green:  randomObject.signalColor=="green"?1:0,
         };
         const newChartEntry2 = {
           date: moment().format("YYYY-MM-DD"),
-          red: data2[0]?.red || 0,
-          yellow: data2[0]?.yellow || 0,
-          green: data2[0]?.green || 0,
+          red: randomObject.signalColor=="red"?1:0,
+          yellow:  randomObject.signalColor=="yellow"?1:0,
+          green:  randomObject.signalColor=="green"?1:0,
         };
         chartData2.push(newChartEntry2);
         chartData.push(newChartEntry);
