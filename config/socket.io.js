@@ -4,8 +4,11 @@ import express from "express";
 import { signalModel } from "../models/signal.schema.js";
 import { signalHistoryModel } from "../models/signal.history.js";
 import moment from "moment";
+import momentTZ from "moment-timezone";
+
 const app = express();
 const server = http.createServer(app);
+const TIMEZONE = "Asia/Kolkata";
 const io = new Server(server, {
   addTrailingSlash: false,
   cors: {
@@ -58,7 +61,7 @@ io.on("connection", (socket) => {
       if (randomSignal.length > 0) {
         const randomObject = randomSignal[0];
 
-        const timestamp = moment().local().toDate();
+        const timestamp = moment().local(TIMEZONE).toDate();
         const signalHistoryDoc = new signalHistoryModel({
           signalId: randomObject.signalId,
           signalColor: randomObject.signalColor,
@@ -93,7 +96,10 @@ io.on("connection", (socket) => {
           },
         ]);
 
-        const elapsedSeconds = moment.utc().diff(serverStartTime, "seconds");
+
+        const elapsedSeconds = momentTZ
+        .tz(TIMEZONE)
+        .diff(serverStartTime, "seconds");
         const newChartEntry = {
           sec: `${elapsedSeconds}s`,
           red: data2[0]?.red || 0,
