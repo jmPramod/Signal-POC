@@ -1,8 +1,8 @@
 
 import axios from "axios";
-// const base_url="http://localhost:3500"
+const base_url="http://localhost:3500"
 
-const base_url = import.meta.env.VITE_REACT_APP_DEPLOY_URL;
+// const base_url = import.meta.env.VITE_REACT_APP_DEPLOY_URL;
 export const login = async (payload) => {
     console.log(payload);
     

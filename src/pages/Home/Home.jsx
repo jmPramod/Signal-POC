@@ -21,7 +21,7 @@ const Home = () => {
   const [randomObject, setRandomObject] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
   const [isOpen, setIsOpen] = useState(false)
-
+const[graph2,setGraph2]=useState([])
   const [showNotification, setShowNotification] = useState(true);
   const [dataArray, setDataArray] = useState([]);
   const [isConnected, setIsConnected] = useState(true); // Track connection status
@@ -46,6 +46,7 @@ const Home = () => {
 
       subscribeToEvent("message", (data) => {
         console.log("Random object received:", data);
+        setGraph2(data.chartData2)
         setRandomObject(data);
         setDataArray((prevData) => [...prevData, data]);
       });
@@ -60,7 +61,11 @@ const Home = () => {
       };
     }
   }, [isConnected,user]);
+useEffect(()=>{
 
+  console.log("dataArray",dataArray);
+  
+},[dataArray])
   const handleDisconnect = () => {
     disconnectSocket();
     setIsConnected(false);
@@ -239,7 +244,7 @@ const Home = () => {
           </styles.rightTop>
 
           <styles.rightBottom>
-            <Graph2 chartData={randomObject && randomObject.chartData} />
+            <Graph2 chartData={graph2 && graph2} />
           </styles.rightBottom>
         </styles.rightContainer>
       </styles.outerContainer>
