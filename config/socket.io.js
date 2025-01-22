@@ -65,7 +65,7 @@ io.on("connection", (socket) => {
           description: randomObject.description,
           img_url: randomObject.img_url,
           danger: randomObject.danger,
-          timestamp: new Date(timestamp).toLocaleString(),
+          timestamp: moment(timestamp).format("YYYY-MM-DD HH:mm:ss [UTC]"),
         });
         const data2 = await signalHistoryModel.aggregate([
           {
@@ -93,7 +93,7 @@ io.on("connection", (socket) => {
           },
         ]);
 
-        const elapsedSeconds = moment().diff(serverStartTime, "seconds");
+        const elapsedSeconds = moment.utc().diff(serverStartTime, "seconds");
         const newChartEntry = {
           sec: `${elapsedSeconds}s`,
           red: data2[0]?.red || 0,
