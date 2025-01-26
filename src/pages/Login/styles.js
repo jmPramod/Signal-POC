@@ -1,23 +1,23 @@
-import styled from "@emotion/styled";
-import { DynamicFeedTwoTone } from "@mui/icons-material";
-import { AppBar, Button, Drawer, TextField, Toolbar } from "@mui/material";
-import { motion } from "framer-motion";
+import styled from '@emotion/styled';
+import { DynamicFeedTwoTone } from '@mui/icons-material';
+import { AppBar, Button, Drawer, TextField, Toolbar } from '@mui/material';
+import { motion } from 'framer-motion';
 
 export const styles = {
-  outerContainer: styled("div")`
-    margin-top: 72px;
+  outerContainer: styled('div')`
+    margin-top: 66px;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 30px;
     height: 90.8vh;
     background-color: #dddddd;
-    @media(0px<width<780px){
+    @media (0px<width<780px) {
       width: 100%;
       overflow-y: auto;
     }
   `,
-  rightContainer: styled("div")`
+  rightContainer: styled('div')`
     width: 50%;
     height: 100%;
     background-color: white;
@@ -26,30 +26,30 @@ export const styles = {
     justify-content: center;
     gap: 20px;
     flex-direction: column;
-    @media(0px<width<780px){
+    @media (0px<width<780px) {
       width: 100%;
     }
   `,
-  formEle: styled("form")`
+  formEle: styled('form')`
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     width: 50%;
     gap: 20px;
-    @media(0px<width<780px){
+    @media (0px<width<780px) {
       width: 95%;
-      gap:4px;
+      gap: 4px;
     }
   `,
-  leftContainer: styled("div")`
+  leftContainer: styled('div')`
     width: 50%;
     height: 100%;
-    @media(0px<width<780px){
+    @media (0px<width<780px) {
       width: 100%;
     }
   `,
-  image: styled("img")`
+  image: styled('img')`
     width: 100%;
     height: 100%;
   `,

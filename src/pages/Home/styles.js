@@ -1,13 +1,20 @@
-import { Card } from "@/components/ui/card";
-import styled from "@emotion/styled";
-import { DynamicFeedTwoTone } from "@mui/icons-material";
-import { AppBar, Button, Drawer, TextField, Toolbar, Typography } from "@mui/material";
+import { Card } from '@/components/ui/card';
+import styled from '@emotion/styled';
+import { DynamicFeedTwoTone } from '@mui/icons-material';
+import {
+  AppBar,
+  Button,
+  Drawer,
+  TextField,
+  Toolbar,
+  Typography,
+} from '@mui/material';
 
 export const styles = {
-  outerContainer: styled("div")`
+  outerContainer: styled('div')`
     display: flex;
     width: 100%;
-    margin-top: 72px;
+    margin-top: 66px;
     gap: 15px;
     padding: 20px;
     flex-direction: row;
@@ -17,7 +24,7 @@ export const styles = {
     }
     /* height: 90vh; */
   `,
-  leftContainer: styled("div")`
+  leftContainer: styled('div')`
     width: 25%;
     /* border: 1px solid red; */
     height: 100%;
@@ -30,7 +37,7 @@ export const styles = {
       width: 100%;
     }
   `,
-  rightContainer: styled("div")`
+  rightContainer: styled('div')`
     width: 100%;
     height: 100%;
     display: flex;
@@ -42,7 +49,7 @@ export const styles = {
       width: 100%;
     }
   `,
-  leftTop: styled("div")`
+  leftTop: styled('div')`
     height: 60%;
     width: 100%;
     /* border: 1px solid green; */
@@ -52,13 +59,13 @@ export const styles = {
     }
   `,
 
-  leftbottom: styled("div")`
+  leftbottom: styled('div')`
     width: 100%;
     /* height: 100%; */
     /* border: 1px solid gainsboro; */
   `,
 
-  rightTop: styled("div")`
+  rightTop: styled('div')`
     /* height: 70%; */
     width: 100%;
     /* border: 1px solid green; */
@@ -71,40 +78,38 @@ export const styles = {
     }
   `,
 
-  rightBottom: styled("div")`
+  rightBottom: styled('div')`
     width: 100%;
     height: 30%;
     /* border: 1px solid gainsboro; */
   `,
 
-  image: styled("img")`
+  image: styled('img')`
     width: 200px;
     height: 200px;
     flex-wrap: wrap;
   `,
-   image2: styled("img")`
-   width: 50px;
-   height: 50px;
-   flex-wrap: wrap;
- `,
-  info: styled("div")`
-   display: flex;
-   flex-direction: column;
-   align-items: start;
-   justify-content: center;
-   @media(0px<width<780px){
-    width: 100%;
-    align-items: center;
-  }
-  
+  image2: styled('img')`
+    width: 50px;
+    height: 50px;
+    flex-wrap: wrap;
   `,
-  WelcomeText:styled(Typography)``,
-  welcomeCard:styled(Card)`
-  padding:13px;
-  
-  @media(0px<width<780px){
-    width: 100%;
-  }
-  `
+  info: styled('div')`
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    @media (0px<width<780px) {
+      width: 100%;
+      align-items: center;
+    }
+  `,
+  WelcomeText: styled(Typography)``,
+  welcomeCard: styled(Card)`
+    padding: 13px;
 
+    @media (0px<width<780px) {
+      width: 100%;
+    }
+  `,
 };
